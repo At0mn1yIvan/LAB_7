@@ -59,7 +59,7 @@ void Credit::ShowTheRates()
 
 void Credit::TakeTheCredit()
 {
-	if (credit_info[0][user_] != 1) {
+	if (credit_info[0][user_] == 0) {
 		std::cout << "Введите желаемую сумму кредита :\n";
 		std::cin >> credit_info[1][user_];
 		std::cout << "Кредит оформлен!" << std::endl;
@@ -71,12 +71,14 @@ void Credit::TakeTheCredit()
 		if (100000 <= credit_info[1][user_] && credit_info[1][user_] < 500000) {
 			credit_info[4][user_] = 12;
 			credit_info[6][user_] = 8;
+
 		}
 		if (500000 <= credit_info[1][user_] && credit_info[1][user_] < 1000000) {
 			credit_info[4][user_] = 20;
 			credit_info[6][user_] = 6;
+
 		}
-		else {
+		if (1000000 <= credit_info[1][user_] && credit_info[1][user_] < 3000000) {
 			credit_info[4][user_] = 36;
 			credit_info[6][user_] = 4;
 		}
@@ -102,7 +104,7 @@ void Credit::IsCredit()
 			std::cout << " Кредит 100-500 т.р. (8% / 12 мес.)" << std::endl;
 		if (500000 <= credit_info[1][user_] && credit_info[1][user_] < 1000000)
 			std::cout << " Кредит 500 т.р. - 1 млн.р. (6% / 20 мес.)" << std::endl;
-		else 
+		if (1000000 <= credit_info[1][user_] && credit_info[1][user_] < 3000000)
 			std::cout << " Кредит 1 - 3 млн.р. (4% / 36 мес.)" << std::endl;
 		std::cout << "\nСумма кредита: " << credit_info[1][user_] << std::endl;
 		EscapeBind();
@@ -155,11 +157,13 @@ void Credit::RepayTheDept()
 				credit_info[3][user_] -= credit_info[2][user_];
 				credit_info[5][user_]--;
 				system("cls");
-				RepayTheDept();
 				if (credit_info[3][user_] == 0) {
+					credit_info[0][user_] = 0;
 					system("cls");
 					std::cout << "\nПоздравляем! Вы полностью погасили свой кредит!" << std::endl;
+					EscapeBind();
 				}
+				RepayTheDept();
 			}
 			else
 				std::cout << "На счету недостаточно средств для погашения кредитной задолженности" << std::endl;
@@ -186,6 +190,8 @@ void Credit::RepayTheDeptEarly()
 				money[user_] -= credit_info[3][user_];
 				credit_info[3][user_] = 0;
 				credit_info[5][user_] = 0;
+				credit_info[0][user_] = 0;
+				system("cls");
 				std::cout << "\nПоздравляем! Вы досрочно погасили свой кредит!" << std::endl;
 			}
 			else
