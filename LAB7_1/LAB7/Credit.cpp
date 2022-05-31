@@ -168,8 +168,10 @@ void Credit::RepayTheDept()
 			else
 				std::cout << "Ќа счету недостаточно средств дл€ погашени€ кредитной задолженности" << std::endl;
 		}
-		else
-			RepayTheDept();
+		else {
+			system("cls");
+			Menu();
+		}
 	}
 	else
 		std::cout << "¬з€тых кредитов нет." << std::endl;

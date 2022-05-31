@@ -1,2 +1,5 @@
 ﻿  Credit.cpp
+  ProcCenter.cpp
+D:\Projects.C++\LAB7_1\LAB7\ProcCenter.cpp(15,21): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
   LAB7.vcxproj -> D:\Projects.C++\LAB7_1\Debug\LAB7.exe
